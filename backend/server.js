@@ -19,7 +19,7 @@ const isProd = checkEnv();
 var corsOptions = {
   // origin: "http://localhost:3000"
   // origin: "https://restaurant-club.netlify.app"
-  origin: isProd ? "https://restaurant-club.netlify.app" : "http://localhost:3000"
+  origin: isProd ? "https://luminous-crepe-5e56e4.netlify.app/" : "http://localhost:3000"
 };
 
 app.use(cors(corsOptions));
