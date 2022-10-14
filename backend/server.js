@@ -19,7 +19,7 @@ const isProd = checkEnv();
 var corsOptions = {
   // origin: "http://localhost:3000"
   // origin: "https://restaurant-club.netlify.app"
-  origin: isProd ? "https://luminous-crepe-5e56e4.netlify.app/" : "http://localhost:3000"
+  origin: isProd ? "https://luminous-crepe-5e56e4.netlify.app" : "http://localhost:3000"
 };
 
 app.use(cors(corsOptions));
@@ -42,24 +42,24 @@ const testConnection = (async () => {
 })();
 
 /// Create tables from sequelize models if they do not exist
-db.sequelize.sync()
+// db.sequelize.sync()
 
 // USEFUL DEVELOPMENT CODE -- Comment out the above db.sequelize.sync() to use the code below
 // Because the database quickly fills up with junk during testing we drop and re-sync on express start
-// db.sequelize.sync({ force: true })
-// .then(() => {
-//   console.log("Database has been dropped and re-synced.");
-//   console.log(`Server is running on port ${PORT}.`);
-// })
-// .then(() => {
-//   // Loading test data into database
-//    testData.loadTestData();
-// });
+db.sequelize.sync({ force: true })
+.then(() => {
+  console.log("Database has been dropped and re-synced.");
+  console.log(`Server is running on port ${PORT}.`);
+})
+.then(() => {
+  // Loading test data into database
+   testData.loadTestData();
+});
 
 // // Set welcome message for application
-// app.get("/", (req, res) => {
-//   res.json({ message: "Welcome to the Restaurant Club backend application." });
-// });
+app.get("/", (req, res) => {
+  res.json({ message: "Welcome to the Restaurant Club backend application." });
+});
 
 // Set app routes
 require("./routes/user.routes")(app);
