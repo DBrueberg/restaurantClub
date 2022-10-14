@@ -14,7 +14,7 @@ exports.create = (req, res) => {
     // Validate request
     if (!req.body.address) {
         res.status(400).send({
-            message: "You must supply am address!"
+            message: "You must supply an address!"
         });
         return;
     }
