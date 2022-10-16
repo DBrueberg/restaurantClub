@@ -27,6 +27,7 @@ const deleteUserDirectory = require("../middleware/deleteUserDirectory");
  */
 exports.upload = async (req, res) => {
 	try {
+		// console.log(req.body);
 		await uploadFile(req, res);
 		if (req.file == undefined) {
 			// console.log('req details: ', req.file);
@@ -34,11 +35,12 @@ exports.upload = async (req, res) => {
 		}
 		// console.log("userId: ", req.body.userId);
 		// console.log("file location: ", req.file.location);
+		// console.log("Response from save", res.req.file.path)
 
 		// Upload was successful
 		res.status(200).send({
 			// return cloud location so we can use it 
-			location: req.file.location
+			location: res.req.file.path
 		});
 	} catch (err) {
 		// log console errors
