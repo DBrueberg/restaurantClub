@@ -9,9 +9,10 @@
 require('dotenv').config();
 const cloudinary = require('cloudinary').v2;
 
-// The deleteUserDirectory async function will accept a directory
-// (in this case it is the userId) and delete all the images and 
-// videos uploaded from that user
+// The deleteRestaurantDirectory async function will accept a directory
+// (only current directory is main) and delete all the images and 
+// videos uploaded from that director. 
+// ******* THIS FUNCTION WILL MOST LIKELY DELETE ALL RESTAURANT IMAGES *******
 const deleteRestaurantDirectory = async(directory) => {
     // Appending users to get the full directory path
     const fullDirectoryPath = `restaurants/${directory}`;
