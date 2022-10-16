@@ -7,6 +7,21 @@
 const aws = require('aws-sdk');
 const checkEnv = require("../helperFunction/checkEnvironment")
 
+// Cloudinary for image uploads
+// const cloudinary = require('cloudinary').v2;
+// const { CloudinaryStorage } = require('multer-storage-cloudinary');
+
+// let storage = new CloudinaryStorage({
+//     cloudinary: cloudinary,
+//     params: async (req, file) => {
+//         console.log("Req in cloudinary storage", req);
+//         console.log("File in cloudinary storage", file);
+//         return {
+//             folder: `${req.body.type}/${req.body.id}/`
+//         }
+//     }
+// })
+
 // Check if we are on the prod environment
 const isProd = checkEnv();
 
