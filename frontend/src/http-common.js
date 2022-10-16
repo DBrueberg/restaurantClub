@@ -13,7 +13,7 @@ const isProd = checkEnv();
 
 export default axios.create({
   // baseURL: "http://localhost:5000",
-  // baseURL: "https://restaurant-club-backend.herokuapp.com",
+  // baseURL: "https://restaurantclub-production.up.railway.app/",
   baseURL: isProd ?
     "https://restaurantclub-production.up.railway.app/" :
     "http://localhost:5000",
