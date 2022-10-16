@@ -18,6 +18,7 @@
 //  crash in update)
 //  (DAB, 4/17/2022, Fixed a bug in the delete call where the restaurant data was not 
 //  being updated when a user and their reviews were deleted)
+//  (DAB, 10/16/2022, When deleting a user, all their images in the cloud now get deleted)
 
 const { authentication, review } = require("../models");
 const db = require("../models");
@@ -33,6 +34,7 @@ const Restaurant = db.restaurants;
 
 // Password hashing utility
 const bcrypt = require('bcrypt');
+const deleteUserDirectory = require("../middleware/deleteUserDirectory");
 
 // Create and Save a new User
 // Asynchronous method to create a user with the parameters passed from the frontend.
@@ -532,8 +534,14 @@ exports.delete = async (req, res) => {
             return "User not found";
         });
 
-    // If a user was deleted without errors, also delete the address
+    // If a user was deleted without errors, also delete the address and cloud images
     if (deletedUserStatus == 1) {
+        // Deleting user images in the cloud
+        await deleteUserDirectory(id)
+            .then(result => console.log("User images successfully deleted"))
+            .catch(error => console.log("There was an error deleting user images"));
+
+        // Deleting the user address
         await Address.destroy({
             where: { addressId: addressId }
         })
