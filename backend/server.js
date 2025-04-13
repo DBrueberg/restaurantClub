@@ -5,6 +5,7 @@
 // Last Edited (Initials, Date, Edits):
 //  (DAB, 2/20/2022, Added routes for image, rating, review, and reviewImage)
 //  (DAB, 2/27/2022, Added message route)
+//  (DAB, 04/13/2025, Chaning env variables for Railway deployment)
 
 const express = require("express");
 const cors = require("cors");
@@ -19,7 +20,7 @@ const isProd = checkEnv();
 var corsOptions = {
   // origin: "http://localhost:3000"
   // origin: "https://restaurant-club.netlify.app"
-  origin: isProd ? "https://restaurant-club.netlify.app" : "http://localhost:3000"
+  origin: isProd ? process.env.MYSQL_URL : "http://localhost:3000"
 };
 
 app.use(cors(corsOptions));
