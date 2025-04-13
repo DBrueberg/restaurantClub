@@ -3,6 +3,8 @@
 // Restaurant Club - db.config.js
 // February 14, 2022
 // Last Edited (Initials, Date, Edits):
+//  (DAB, 04/13/2025, Chaning env variables for Railway deployment)
+
 const fs = require('fs');
 const path = require("path");
 const checkEnv = require("../helperFunction/checkEnvironment")
@@ -11,11 +13,11 @@ const checkEnv = require("../helperFunction/checkEnvironment")
 const isProd = checkEnv();
 
 module.exports = {
-  HOST: isProd ? process.env.DB_URL : "localhost",
-  PORT: isProd ? process.env.DB_PORT : 3306,
-  USER: isProd ? process.env.DB_USERNAME : "restaurant",
-  PASSWORD: isProd ? process.env.DB_PASSWORD : "S566kcKyQeykBpsY",
-  DB: isProd ? process.env.DB_DATABASE : "restaurantDB",
+  HOST: isProd ? process.env.MYSQLHOST : "localhost",
+  PORT: isProd ? process.env.MYSQLPORT : 3306,
+  USER: isProd ? process.env.MYSQLUSER : "root",
+  PASSWORD: isProd ? process.env.MYSQLPASSWORD : "password",
+  DB: isProd ? process.env.MYSQL_DATABASE : "restaurantDB",
   ssl: {
     ca: isProd ? process.env.CA_CERT : "",
     rejectUnauthorized: true
